@@ -10,7 +10,9 @@ class CatCommand(BaseCommand):
     def run(self, args, context: ToolContext) -> str:
         self.require_count(args, 1, "Exactly one filepath is required.")
         filepath = args[0]
-        require_existing_file(filepath)
+        
+        with open(filepath, "r", encoding="utf-8") as f:
+            return f.read()
 
         # TODO: Read and return one text file.
         # 1. Require exactly one filepath.
